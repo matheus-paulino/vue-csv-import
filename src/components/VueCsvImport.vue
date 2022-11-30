@@ -23,7 +23,7 @@ const defaultLanguage = {
     invalidMimeType: "Invalid file type",
   },
   toggleHeaders: "File has headers",
-  submitBtn: "teste",
+  submitBtn: "Submit",
   fieldColumn: "Field",
   csvColumn: "Column",
   requiredField: "*",

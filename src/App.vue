@@ -1,55 +1,40 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="assets/logo.png" />
-    <div class="container">
-      <div class="row mt-5 text-center">
-        <div class="col-6 offset-3">
-          <a href="assets/csv-sample.csv" target="_blank">Example Vmix</a>
-        </div>
+    <vue-csv-import
+      v-slot="{ file }"
+      v-model="csv"
+      :fields="{
+        name: { required: True, label: 'Name' },
+        phone: { required: true, label: 'Phone' },
+      }"
+      :text="{
+        toggleHeaders: 'Arquivo tem cabeçalho',
+        submitBtn: 'Enviar',
+      }"
+    >
+      <div class="flex flex-col items-center">
+        <vue-csv-errors></vue-csv-errors>
+        <vue-csv-toggle-headers></vue-csv-toggle-headers>
+        <vue-csv-input></vue-csv-input>
       </div>
-      <section class="py-5">
-        <div class="row mt-5">
-          <div class="col-8 offset-2">
-            <h4>Example:</h4>
-            <pre><code class="html">&lt;vue-csv-import
-    v-model="csv"
-    :fields="{name: {required: false, label: 'Name'}, age: {required: true, label: 'Age'}}"
-&gt;
-    &lt;vue-csv-toggle-headers&gt;&lt;/vue-csv-toggle-headers&gt;
-    &lt;vue-csv-errors&gt;&lt;/vue-csv-errors&gt;
-    &lt;vue-csv-input&gt;&lt;/vue-csv-input&gt;
-    &lt;vue-csv-table-map :auto-match="false"&gt;&lt;/vue-csv-table-map&gt;
-&lt;/vue-csv-import&gt;</code></pre>
-          </div>
-        </div>
-        <div class="row mt-5">
-          <div class="col-8 offset-2">
-            <h4 class="mb-4">Result:</h4>
-            <vue-csv-import
-              v-slot="{ file }"
-              v-model="csv"
-              :fields="{
-                name: { required: True, label: 'Name' },
-                phone: { required: true, label: 'Phone' },
-              }"
+      <div class="px-4 sm:px-6 lg:px-8">
+        <div class="mt-8 flex flex-col">
+          <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div
+              class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8"
             >
-              <vue-csv-errors></vue-csv-errors>
-              <vue-csv-toggle-headers></vue-csv-toggle-headers>
-              <vue-csv-input></vue-csv-input>
               <vue-csv-table-map
                 :auto-match="false"
                 :table-attributes="{ id: 'csv-table' }"
-              ></vue-csv-table-map>
-              <vue-csv-submit
-                @submit="submit($event, payload)"
-                url="/"
-              ></vue-csv-submit>
-            </vue-csv-import>
-            <pre class="mt-15" v-if="csv"><code>{{ csv }}</code></pre>
+              />
+            </div>
           </div>
         </div>
-      </section>
-    </div>
+      </div>
+      <div class="py-3">
+        <vue-csv-submit @submit="submit($event, payload)" />
+      </div>
+    </vue-csv-import>
   </div>
 </template>
 
