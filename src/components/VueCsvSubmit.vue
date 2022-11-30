@@ -8,44 +8,18 @@
 
 <script>
 import { inject } from "vue";
-import axios from "axios";
 
 export default {
   name: "VueCsvImportSubmit",
-  props: {
-    url: {
-      type: String,
-      required: true,
-    },
-    config: {
-      type: Object,
-      required: false,
-      default: {},
-    },
-  },
-  setup(props, context) {
+
+  setup(_, context) {
     const VueCsvImportData = inject("VueCsvImportData");
     const buildMappedCsv = inject("buildMappedCsv");
     const labels = VueCsvImportData.language;
 
     const submit = function () {
       buildMappedCsv();
-
-      axios
-        .post(
-          props.url,
-          { [VueCsvImportData.inputName]: VueCsvImportData.value },
-          props.config
-        )
-        .then((response) => {
-          context.emit("send-success", response);
-        })
-        .catch((response) => {
-          context.emit("send-error", response);
-        })
-        .finally((response) => {
-          context.emit("send-complete", response);
-        });
+      context.emit("submit", VueCsvImportData.value);
     };
 
     return {

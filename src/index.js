@@ -31,4 +31,4 @@ const VueCsvImportPlugin = {
     }
 }
 
-export {VueCsvToggleHeaders, VueCsvSubmit, VueCsvMap, VueCsvTableMap, VueCsvInput, VueCsvErrors, VueCsvImport, VueCsvImportPlugin};
+export { VueCsvToggleHeaders, VueCsvSubmit, VueCsvMap, VueCsvTableMap, VueCsvInput, VueCsvErrors, VueCsvImport, VueCsvImportPlugin };
