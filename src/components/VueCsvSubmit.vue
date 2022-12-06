@@ -1,6 +1,6 @@
 <template>
   <slot name="submit" :submit="submit" :mapped-csv="VueCsvImportData.value">
-    <button type="submit" v-bind="$attrs" @click.prevent="submit">
+    <button id="submit" type="submit" v-bind="$attrs" @click.prevent="submit">
       {{ labels.submitBtn }}
     </button>
   </slot>
